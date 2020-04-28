@@ -22,12 +22,97 @@
     
    
     
-     <!-- 后台管理员表表 -->
-    <table  tableName="backadmin" domainObjectName="Backadmin "  
+     <!-- 后台管理员表 -->
+    <table  tableName="backadmin" domainObjectName="Backadmin"  
      enableCountByExample="false" enableDeleteByExample="false"
      enableUpdateByExample="false"
      enableSelectByExample="true"
     /> 
+    
+    <!-- 前台地址表 -->
+    <table  tableName="address" domainObjectName="Address"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!-- 后台用户表 -->
+    <table  tableName="backuser" domainObjectName="Backuser"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!-- 登录日志表 -->
+    <table  tableName="customerloginlog" domainObjectName="Customerloginlog"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!-- 平台收益明细表 -->
+    <table  tableName="earningsinfo" domainObjectName="Earningsinfo"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!-- 商品库存表 -->
+    <table  tableName="inventory" domainObjectName="Inventory"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!-- 订单表 -->
+    <table  tableName="orders" domainObjectName="Orders"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!-- 订单明细表 -->
+    <table  tableName="orderdetail" domainObjectName="Orderdetail"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!--出入库审核表 -->
+    <table  tableName="outputcheck" domainObjectName="Outputcheck"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!--物流公司信息表 -->
+    <table  tableName="shippinginfo" domainObjectName="Shippinginfo"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!--商品表 -->
+    <table  tableName="shoes" domainObjectName="Shoes"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!--商品类别表 -->
+    <table  tableName="sort" domainObjectName="Sort"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+    <!--款式尺码表 -->
+    <table  tableName="style" domainObjectName="Style"  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
     
   </context>
 </generatorConfiguration>
