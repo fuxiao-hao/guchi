@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+<classPathEntry location="E:\ojdbc6.jar" />
+  <context id="context1">
+   
+    <!-- 不产生注释信息 -->
+  <commentGenerator>
+    <property name="suppressAllComments" value="true"/>
+  </commentGenerator>
+  <!-- 数据库的配置 -->
+    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+     connectionURL="jdbc:oracle:thin:@47.96.151.111:1521:helowin"
+      userId="gucci" password="gucci" />
+      
+      <!--实体类存放的位置  -->
+    <javaModelGenerator targetPackage="com.newer.domain" targetProject="guchi" />
+     <!-- 映射文件存放的目录 -->
+    <sqlMapGenerator targetPackage="com.newer.mapper" targetProject="guchi" />
+     <!-- 接口存放的目录 -->
+    <javaClientGenerator targetPackage="com.newer.dao" targetProject="guchi" type="XMLMAPPER" />
+    
+   
+    
+     <!-- 后台管理员表表 -->
+    <table  tableName="backadmin" domainObjectName="Backadmin "  
+     enableCountByExample="false" enableDeleteByExample="false"
+     enableUpdateByExample="false"
+     enableSelectByExample="true"
+    /> 
+    
+  </context>
+</generatorConfiguration>
