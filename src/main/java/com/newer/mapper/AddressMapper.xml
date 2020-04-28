@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.newer.dao.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.newer.domain.Address" >
+    <id column="ADDRESSID" property="addressid" jdbcType="DECIMAL" />
+    <result column="ACCOUNTID" property="accountid" jdbcType="DECIMAL" />
+    <result column="CONSIGNEENAME" property="consigneename" jdbcType="VARCHAR" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="STREET" property="street" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="ISDEFAULTADDRESS" property="isdefaultaddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ADDRESSID, ACCOUNTID, CONSIGNEENAME, AREA, STREET, PHONE, ISDEFAULTADDRESS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.newer.domain.AddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ADDRESS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from ADDRESS
+    where ADDRESSID = #{addressid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from ADDRESS
+    where ADDRESSID = #{addressid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newer.domain.Address" >
+    insert into ADDRESS (ADDRESSID, ACCOUNTID, CONSIGNEENAME, 
+      AREA, STREET, PHONE, 
+      ISDEFAULTADDRESS)
+    values (#{addressid,jdbcType=DECIMAL}, #{accountid,jdbcType=DECIMAL}, #{consigneename,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{isdefaultaddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newer.domain.Address" >
+    insert into ADDRESS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        ADDRESSID,
+      </if>
+      <if test="accountid != null" >
+        ACCOUNTID,
+      </if>
+      <if test="consigneename != null" >
+        CONSIGNEENAME,
+      </if>
+      <if test="area != null" >
+        AREA,
+      </if>
+      <if test="street != null" >
+        STREET,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="isdefaultaddress != null" >
+        ISDEFAULTADDRESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        #{addressid,jdbcType=DECIMAL},
+      </if>
+      <if test="accountid != null" >
+        #{accountid,jdbcType=DECIMAL},
+      </if>
+      <if test="consigneename != null" >
+        #{consigneename,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isdefaultaddress != null" >
+        #{isdefaultaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newer.domain.Address" >
+    update ADDRESS
+    <set >
+      <if test="accountid != null" >
+        ACCOUNTID = #{accountid,jdbcType=DECIMAL},
+      </if>
+      <if test="consigneename != null" >
+        CONSIGNEENAME = #{consigneename,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        STREET = #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isdefaultaddress != null" >
+        ISDEFAULTADDRESS = #{isdefaultaddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ADDRESSID = #{addressid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newer.domain.Address" >
+    update ADDRESS
+    set ACCOUNTID = #{accountid,jdbcType=DECIMAL},
+      CONSIGNEENAME = #{consigneename,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      STREET = #{street,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      ISDEFAULTADDRESS = #{isdefaultaddress,jdbcType=VARCHAR}
+    where ADDRESSID = #{addressid,jdbcType=DECIMAL}
+  </update>
+</mapper>

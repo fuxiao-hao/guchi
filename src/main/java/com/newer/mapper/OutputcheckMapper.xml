@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.newer.dao.OutputcheckMapper" >
+  <resultMap id="BaseResultMap" type="com.newer.domain.Outputcheck" >
+    <id column="OUTPUTID" property="outputid" jdbcType="DECIMAL" />
+    <result column="SHOESID" property="shoesid" jdbcType="DECIMAL" />
+    <result column="SHOESIMAGE" property="shoesimage" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE" property="warehouse" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="SHOESNAME" property="shoesname" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="OCOUNT" property="ocount" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="INVENTORY" property="inventory" jdbcType="DECIMAL" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="AUDITSTATUS" property="auditstatus" jdbcType="VARCHAR" />
+    <result column="AUDITINSTRUCTIONS" property="auditinstructions" jdbcType="VARCHAR" />
+    <result column="AUDITTIME" property="audittime" jdbcType="TIMESTAMP" />
+    <result column="SHOESSTYLE" property="shoesstyle" jdbcType="VARCHAR" />
+    <result column="OSIZE" property="osize" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    OUTPUTID, SHOESID, SHOESIMAGE, WAREHOUSE, CREATEDATE, SHOESNAME, UNIT, OCOUNT, PRICE, 
+    INVENTORY, OPERATOR, REMARK, AUDITSTATUS, AUDITINSTRUCTIONS, AUDITTIME, SHOESSTYLE, 
+    OSIZE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.newer.domain.OutputcheckExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from OUTPUTCHECK
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPUTCHECK
+    where OUTPUTID = #{outputid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from OUTPUTCHECK
+    where OUTPUTID = #{outputid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newer.domain.Outputcheck" >
+    insert into OUTPUTCHECK (OUTPUTID, SHOESID, SHOESIMAGE, 
+      WAREHOUSE, CREATEDATE, SHOESNAME, 
+      UNIT, OCOUNT, PRICE, 
+      INVENTORY, OPERATOR, REMARK, 
+      AUDITSTATUS, AUDITINSTRUCTIONS, AUDITTIME, 
+      SHOESSTYLE, OSIZE)
+    values (#{outputid,jdbcType=DECIMAL}, #{shoesid,jdbcType=DECIMAL}, #{shoesimage,jdbcType=VARCHAR}, 
+      #{warehouse,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{shoesname,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{ocount,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
+      #{inventory,jdbcType=DECIMAL}, #{operator,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{auditstatus,jdbcType=VARCHAR}, #{auditinstructions,jdbcType=VARCHAR}, #{audittime,jdbcType=TIMESTAMP}, 
+      #{shoesstyle,jdbcType=VARCHAR}, #{osize,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newer.domain.Outputcheck" >
+    insert into OUTPUTCHECK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="outputid != null" >
+        OUTPUTID,
+      </if>
+      <if test="shoesid != null" >
+        SHOESID,
+      </if>
+      <if test="shoesimage != null" >
+        SHOESIMAGE,
+      </if>
+      <if test="warehouse != null" >
+        WAREHOUSE,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="shoesname != null" >
+        SHOESNAME,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="ocount != null" >
+        OCOUNT,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="inventory != null" >
+        INVENTORY,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="auditstatus != null" >
+        AUDITSTATUS,
+      </if>
+      <if test="auditinstructions != null" >
+        AUDITINSTRUCTIONS,
+      </if>
+      <if test="audittime != null" >
+        AUDITTIME,
+      </if>
+      <if test="shoesstyle != null" >
+        SHOESSTYLE,
+      </if>
+      <if test="osize != null" >
+        OSIZE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="outputid != null" >
+        #{outputid,jdbcType=DECIMAL},
+      </if>
+      <if test="shoesid != null" >
+        #{shoesid,jdbcType=DECIMAL},
+      </if>
+      <if test="shoesimage != null" >
+        #{shoesimage,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouse != null" >
+        #{warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shoesname != null" >
+        #{shoesname,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="ocount != null" >
+        #{ocount,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="inventory != null" >
+        #{inventory,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditinstructions != null" >
+        #{auditinstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="audittime != null" >
+        #{audittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shoesstyle != null" >
+        #{shoesstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="osize != null" >
+        #{osize,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newer.domain.Outputcheck" >
+    update OUTPUTCHECK
+    <set >
+      <if test="shoesid != null" >
+        SHOESID = #{shoesid,jdbcType=DECIMAL},
+      </if>
+      <if test="shoesimage != null" >
+        SHOESIMAGE = #{shoesimage,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouse != null" >
+        WAREHOUSE = #{warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shoesname != null" >
+        SHOESNAME = #{shoesname,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="ocount != null" >
+        OCOUNT = #{ocount,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="inventory != null" >
+        INVENTORY = #{inventory,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="auditstatus != null" >
+        AUDITSTATUS = #{auditstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditinstructions != null" >
+        AUDITINSTRUCTIONS = #{auditinstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="audittime != null" >
+        AUDITTIME = #{audittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shoesstyle != null" >
+        SHOESSTYLE = #{shoesstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="osize != null" >
+        OSIZE = #{osize,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OUTPUTID = #{outputid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newer.domain.Outputcheck" >
+    update OUTPUTCHECK
+    set SHOESID = #{shoesid,jdbcType=DECIMAL},
+      SHOESIMAGE = #{shoesimage,jdbcType=VARCHAR},
+      WAREHOUSE = #{warehouse,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      SHOESNAME = #{shoesname,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      OCOUNT = #{ocount,jdbcType=DECIMAL},
+      PRICE = #{price,jdbcType=DECIMAL},
+      INVENTORY = #{inventory,jdbcType=DECIMAL},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      AUDITSTATUS = #{auditstatus,jdbcType=VARCHAR},
+      AUDITINSTRUCTIONS = #{auditinstructions,jdbcType=VARCHAR},
+      AUDITTIME = #{audittime,jdbcType=TIMESTAMP},
+      SHOESSTYLE = #{shoesstyle,jdbcType=VARCHAR},
+      OSIZE = #{osize,jdbcType=VARCHAR}
+    where OUTPUTID = #{outputid,jdbcType=DECIMAL}
+  </update>
+</mapper>

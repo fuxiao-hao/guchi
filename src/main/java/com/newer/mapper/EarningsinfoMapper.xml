@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.newer.dao.EarningsinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.newer.domain.Earningsinfo" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="ORDERID" property="orderid" jdbcType="VARCHAR" />
+    <result column="PURCHASINGPRICE" property="purchasingprice" jdbcType="DECIMAL" />
+    <result column="SELLINGPRICE" property="sellingprice" jdbcType="DECIMAL" />
+    <result column="SHIPPINGPRICE" property="shippingprice" jdbcType="DECIMAL" />
+    <result column="WRITETIME" property="writetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ORDERID, PURCHASINGPRICE, SELLINGPRICE, SHIPPINGPRICE, WRITETIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.newer.domain.EarningsinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from EARNINGSINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from EARNINGSINFO
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from EARNINGSINFO
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newer.domain.Earningsinfo" >
+    insert into EARNINGSINFO (ID, ORDERID, PURCHASINGPRICE, 
+      SELLINGPRICE, SHIPPINGPRICE, WRITETIME
+      )
+    values (#{id,jdbcType=DECIMAL}, #{orderid,jdbcType=VARCHAR}, #{purchasingprice,jdbcType=DECIMAL}, 
+      #{sellingprice,jdbcType=DECIMAL}, #{shippingprice,jdbcType=DECIMAL}, #{writetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.newer.domain.Earningsinfo" >
+    insert into EARNINGSINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderid != null" >
+        ORDERID,
+      </if>
+      <if test="purchasingprice != null" >
+        PURCHASINGPRICE,
+      </if>
+      <if test="sellingprice != null" >
+        SELLINGPRICE,
+      </if>
+      <if test="shippingprice != null" >
+        SHIPPINGPRICE,
+      </if>
+      <if test="writetime != null" >
+        WRITETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasingprice != null" >
+        #{purchasingprice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellingprice != null" >
+        #{sellingprice,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingprice != null" >
+        #{shippingprice,jdbcType=DECIMAL},
+      </if>
+      <if test="writetime != null" >
+        #{writetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newer.domain.Earningsinfo" >
+    update EARNINGSINFO
+    <set >
+      <if test="orderid != null" >
+        ORDERID = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasingprice != null" >
+        PURCHASINGPRICE = #{purchasingprice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellingprice != null" >
+        SELLINGPRICE = #{sellingprice,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingprice != null" >
+        SHIPPINGPRICE = #{shippingprice,jdbcType=DECIMAL},
+      </if>
+      <if test="writetime != null" >
+        WRITETIME = #{writetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newer.domain.Earningsinfo" >
+    update EARNINGSINFO
+    set ORDERID = #{orderid,jdbcType=VARCHAR},
+      PURCHASINGPRICE = #{purchasingprice,jdbcType=DECIMAL},
+      SELLINGPRICE = #{sellingprice,jdbcType=DECIMAL},
+      SHIPPINGPRICE = #{shippingprice,jdbcType=DECIMAL},
+      WRITETIME = #{writetime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
