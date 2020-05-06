@@ -8,44 +8,49 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.newer.domain.Account;
+import com.newer.domain.Inventory;
+import com.newer.domain.Orderdetail;
 import com.newer.dto.AccountDto;
 import com.newer.dto.MsgDto;
 import com.newer.service.AccountService;
+import com.newer.service.InventoryService;
 
 @RestController
-@RequestMapping("/account")
-public class AccountController {
+@RequestMapping("/inventory")
+public class InventoryController {
     @Autowired
-    private AccountService accountService;
+    private InventoryService inventoryService;
     
     @RequestMapping("/find")
-    public List<Account> find(){
-    	return accountService.find();
+    public List<Inventory> find(){
+    	return inventoryService.find();
     }
-    @RequestMapping("/findselect")
-	public Account findselect(String phone, String passward) {
-		return accountService.findselect(phone, passward);
-	}
+   
     @RequestMapping("/save")
-	public MsgDto save(Account account) {
-		boolean bool= this.accountService.save(account);
+	public MsgDto save(Inventory inventory) {
+		boolean bool= this.inventoryService.save(inventory);
 		if (bool) {
 			return new MsgDto(true,"添加成功");
 		} else {
 			return new MsgDto(true,"添加失败");
 		}
 	}
+    @RequestMapping("/update")
+   	public MsgDto update(Inventory inventory) {
+   		boolean bool= this.inventoryService.update(inventory);
+   		if (bool) {
+   			return new MsgDto(true,"修改成功");
+   		} else {
+   			return new MsgDto(true,"修改失败");
+   		}
+   	}
     @RequestMapping("/delete")
 	public MsgDto delete(Integer id) {
-    	boolean bool= this.accountService.delete(id);
+    	boolean bool= this.inventoryService.delete(id);
 		if (bool) {
 			return new MsgDto(true,"删除成功");
 		} else {
 			return new MsgDto(true,"删除失败");
 		}
 	}
-    @RequestMapping("/pagecheck")
-	public PageInfo<Account> pagecheck(AccountDto accoutDto) {
-		return pagecheck(accoutDto);
-	}
-}
+   }

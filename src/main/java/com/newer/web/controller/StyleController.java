@@ -14,7 +14,7 @@ import com.newer.service.AccountService;
 
 @RestController
 @RequestMapping("/account")
-public class AccountController {
+public class StyleController {
     @Autowired
     private AccountService accountService;
     

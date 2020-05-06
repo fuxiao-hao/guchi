@@ -8,44 +8,50 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.newer.domain.Account;
+import com.newer.domain.Backuser;
+import com.newer.domain.Sort;
 import com.newer.dto.AccountDto;
 import com.newer.dto.MsgDto;
 import com.newer.service.AccountService;
+import com.newer.service.SortService;
 
 @RestController
-@RequestMapping("/account")
-public class AccountController {
+@RequestMapping("/sort")
+public class SortController {
     @Autowired
-    private AccountService accountService;
+    private SortService sortService;
     
     @RequestMapping("/find")
-    public List<Account> find(){
-    	return accountService.find();
+    public List<Sort> find(){
+    	return sortService.find();
     }
-    @RequestMapping("/findselect")
-	public Account findselect(String phone, String passward) {
-		return accountService.findselect(phone, passward);
-	}
+ 
     @RequestMapping("/save")
-	public MsgDto save(Account account) {
-		boolean bool= this.accountService.save(account);
+	public MsgDto save(Sort sort) {
+		boolean bool= this.sortService.save(sort);
 		if (bool) {
 			return new MsgDto(true,"添加成功");
 		} else {
 			return new MsgDto(true,"添加失败");
 		}
 	}
+    @RequestMapping("/update")
+   	public MsgDto update(Sort sort) {
+   		boolean bool= this.sortService.update(sort);
+   		if (bool) {
+   			return new MsgDto(true,"修改成功");
+   		} else {
+   			return new MsgDto(true,"修改失败");
+   		}
+   	}
     @RequestMapping("/delete")
 	public MsgDto delete(Integer id) {
-    	boolean bool= this.accountService.delete(id);
+    	boolean bool= this.sortService.delete(id);
 		if (bool) {
 			return new MsgDto(true,"删除成功");
 		} else {
 			return new MsgDto(true,"删除失败");
 		}
 	}
-    @RequestMapping("/pagecheck")
-	public PageInfo<Account> pagecheck(AccountDto accoutDto) {
-		return pagecheck(accoutDto);
-	}
+   
 }

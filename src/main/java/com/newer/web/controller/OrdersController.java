@@ -8,44 +8,50 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.newer.domain.Account;
+import com.newer.domain.Orders;
+import com.newer.domain.Outputcheck;
 import com.newer.dto.AccountDto;
 import com.newer.dto.MsgDto;
 import com.newer.service.AccountService;
+import com.newer.service.OrdersService;
 
 @RestController
-@RequestMapping("/account")
-public class AccountController {
+@RequestMapping("/orders")
+public class OrdersController {
     @Autowired
-    private AccountService accountService;
+    private OrdersService ordersService;
     
     @RequestMapping("/find")
-    public List<Account> find(){
-    	return accountService.find();
+    public List<Orders> find(){
+    	return ordersService.find();
     }
-    @RequestMapping("/findselect")
-	public Account findselect(String phone, String passward) {
-		return accountService.findselect(phone, passward);
-	}
+    
     @RequestMapping("/save")
-	public MsgDto save(Account account) {
-		boolean bool= this.accountService.save(account);
+	public MsgDto save(Orders orders) {
+		boolean bool= this.ordersService.save(orders);
 		if (bool) {
 			return new MsgDto(true,"添加成功");
 		} else {
 			return new MsgDto(true,"添加失败");
 		}
 	}
+    @RequestMapping("/update")
+   	public MsgDto update(Orders orders) {
+   		boolean bool= this.ordersService.update(orders);
+   		if (bool) {
+   			return new MsgDto(true,"修改成功");
+   		} else {
+   			return new MsgDto(true,"修改失败");
+   		}
+   	}
     @RequestMapping("/delete")
 	public MsgDto delete(Integer id) {
-    	boolean bool= this.accountService.delete(id);
+    	boolean bool= this.ordersService.delete(id);
 		if (bool) {
 			return new MsgDto(true,"删除成功");
 		} else {
 			return new MsgDto(true,"删除失败");
 		}
 	}
-    @RequestMapping("/pagecheck")
-	public PageInfo<Account> pagecheck(AccountDto accoutDto) {
-		return pagecheck(accoutDto);
-	}
+   
 }
